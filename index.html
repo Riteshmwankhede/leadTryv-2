@@ -153,10 +153,10 @@
             <label>Lead Status</label>
             <select name="lead_status">
               <option value="">--None--</option>
-              <option value="New">New</option>
-              <option value="Working">Working</option>
-              <option value="Qualified">Qualified</option>
-              <option value="Unqualified">Unqualified</option>
+              <option value="Open - Not Contacted">Open - Not Contacted</option>
+              <option value="Working - Contacted">Working - Contacted</option>
+              <option value="Closed - Converted">Closed - Converted</option>
+              <option value="Closed - Not Converted">Closed - Not Converted</option>
             </select>
           </div>
 
@@ -210,7 +210,11 @@
 
           <div>
             <label>Primary</label>
-            <input name="primary" type="text" placeholder="Primary" />
+            <select name="primary">
+              <option value="">--None--</option>
+              <option value="No">No</option>
+              <option value="Yes">Yes</option>
+            </select>
           </div>
         </div>
 
