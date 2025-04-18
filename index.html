@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lead Form - Salesforce Style</title>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .form-container {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 850px;
+      }
+
+      .section-header {
+        background-color: #f3f2f2;
+        padding: 10px 15px;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: #2e2e2e;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 30px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #444;
+        font-weight: normal;
+        font-size: 14px;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+
+      .full-width {
+        grid-column: span 2;
+      }
+
+      .g-recaptcha {
+        margin-top: 20px;
+      }
+
+      .btn-container {
+        margin-top: 30px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 15px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-save {
+        background-color: #0070d2;
+        color: white;
+      }
+
+      .btn-cancel {
+        background-color: #e0e0e0;
+        color: #333;
+      }
+
+      .error {
+        color: red;
+        margin-top: 10px;
+      }
+    </style>
+
+    <script>
+      function validateForm(e) {
+        const captcha = grecaptcha.getResponse();
+        if (!captcha) {
+          e.preventDefault();
+          document.getElementById("captchaError").textContent =
+            "⚠️ Please verify that you are not a robot.";
+        }
+      }
+
+      function cancelForm() {
+        window.location.href = "https://www.google.com"; // Modify as needed
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="form-container">
+      <div class="section-header">Lead Information</div>
+      <form
+        action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
+        method="POST"
+        onsubmit="validateForm(event)"
+      >
+        <input type="hidden" name="oid" value="00DWU00000F8NTb" />
+        <input type="hidden" name="retURL" value="https://www.google.com" />
+
+        <div class="form-grid">
+          <div>
+            <label>Salutation</label>
+            <select name="salutation">
+              <option value="">--None--</option>
+              <option value="Mr.">Mr.</option>
+              <option value="Ms.">Ms.</option>
+              <option value="Mrs.">Mrs.</option>
+              <option value="Dr.">Dr.</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Phone</label>
+            <input type="text" name="phone" placeholder="Phone" />
+          </div>
+
+          <div>
+            <label>First Name</label>
+            <input name="first_name" type="text" maxlength="40" placeholder="First Name" />
+          </div>
+
+          <div>
+            <label>Mobile</label>
+            <input name="mobile" type="text" maxlength="40" placeholder="Mobile" />
+          </div>
+
+          <div>
+            <label>Last Name *</label>
+            <input name="last_name" type="text" maxlength="80" required placeholder="Last Name" />
+          </div>
+
+          <div>
+            <label>Fax</label>
+            <input type="text" name="fax" placeholder="Fax" />
+          </div>
+
+          <div>
+            <label>Company *</label>
+            <input name="company" type="text" maxlength="40" required placeholder="Company" />
+          </div>
+
+          <div>
+            <label>Email</label>
+            <input name="email" type="email" maxlength="80" placeholder="Email" />
+          </div>
+
+          <div>
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Title" />
+          </div>
+        </div>
+
+        <!-- CAPTCHA -->
+        <div class="g-recaptcha" data-sitekey="6LeljRwrAAAAACSczSzlPCfjOh72U0bqSsB-6lRF"></div>
+        <div class="error" id="captchaError"></div>
+
+        <!-- Buttons -->
+        <div class="btn-container">
+          <button type="submit" class="btn btn-save">Save</button>
+          <button type="button" class="btn btn-cancel" onclick="cancelForm()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
