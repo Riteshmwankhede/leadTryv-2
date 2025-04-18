@@ -41,6 +41,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px 30px;
+        margin-bottom: 30px;
       }
 
       label {
@@ -59,6 +60,10 @@
         border: 1px solid #ccc;
         border-radius: 6px;
         font-size: 14px;
+      }
+
+      textarea {
+        resize: vertical;
       }
 
       .full-width {
@@ -118,7 +123,6 @@
 
   <body>
     <div class="form-container">
-      <div class="section-header">Lead Information</div>
       <form
         action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8"
         method="POST"
@@ -127,31 +131,12 @@
         <input type="hidden" name="oid" value="00DWU00000F8NTb" />
         <input type="hidden" name="retURL" value="https://www.google.com" />
 
+        <!-- Lead Information -->
+        <div class="section-header">Lead Information</div>
         <div class="form-grid">
-          <div>
-            <label>Salutation</label>
-            <select name="salutation">
-              <option value="">--None--</option>
-              <option value="Mr.">Mr.</option>
-              <option value="Ms.">Ms.</option>
-              <option value="Mrs.">Mrs.</option>
-              <option value="Dr.">Dr.</option>
-            </select>
-          </div>
-
-          <div>
-            <label>Phone</label>
-            <input type="text" name="phone" placeholder="Phone" />
-          </div>
-
           <div>
             <label>First Name</label>
             <input name="first_name" type="text" maxlength="40" placeholder="First Name" />
-          </div>
-
-          <div>
-            <label>Mobile</label>
-            <input name="mobile" type="text" maxlength="40" placeholder="Mobile" />
           </div>
 
           <div>
@@ -160,23 +145,81 @@
           </div>
 
           <div>
-            <label>Fax</label>
-            <input type="text" name="fax" placeholder="Fax" />
+            <label>Company *</label>
+            <input name="company" type="text" maxlength="40" required placeholder="Company" />
           </div>
 
           <div>
-            <label>Company *</label>
-            <input name="company" type="text" maxlength="40" required placeholder="Company" />
+            <label>Lead Status</label>
+            <select name="lead_status">
+              <option value="">--None--</option>
+              <option value="New">New</option>
+              <option value="Working">Working</option>
+              <option value="Qualified">Qualified</option>
+              <option value="Unqualified">Unqualified</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Mobile</label>
+            <input name="mobile" type="text" maxlength="40" placeholder="Mobile" />
           </div>
 
           <div>
             <label>Email</label>
             <input name="email" type="email" maxlength="80" placeholder="Email" />
           </div>
+        </div>
+
+        <!-- Address Information -->
+        <div class="section-header">Address Information</div>
+        <div class="form-grid">
+          <div>
+            <label>Street</label>
+            <input name="street" type="text" placeholder="Street" />
+          </div>
 
           <div>
-            <label>Title</label>
-            <input type="text" name="title" placeholder="Title" />
+            <label>City</label>
+            <input name="city" type="text" placeholder="City" />
+          </div>
+
+          <div>
+            <label>State/Province</label>
+            <input name="state" type="text" placeholder="State" />
+          </div>
+
+          <div>
+            <label>Zip/Postal Code</label>
+            <input name="zip" type="text" placeholder="Zip Code" />
+          </div>
+
+          <div class="full-width">
+            <label>Country</label>
+            <input name="country" type="text" placeholder="Country" />
+          </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="section-header">Additional Information</div>
+        <div class="form-grid">
+          <div>
+            <label>SIC Code</label>
+            <input name="sic" type="text" placeholder="SIC Code" />
+          </div>
+
+          <div>
+            <label>Primary</label>
+            <input name="primary" type="text" placeholder="Primary" />
+          </div>
+        </div>
+
+        <!-- Description Information -->
+        <div class="section-header">Description Information</div>
+        <div class="form-grid">
+          <div class="full-width">
+            <label>Description</label>
+            <textarea name="description" rows="4" placeholder="Enter description here..."></textarea>
           </div>
         </div>
 
