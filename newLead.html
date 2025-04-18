@@ -1,0 +1,113 @@
+<template>
+    <lightning-button label="New Lead" onclick={openModal} class="slds-m-around_medium"></lightning-button>
+ 
+    <template if:true={showModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container custom-modal">
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium">New Lead</h2>
+                    
+                </header>
+ 
+                <div class="slds-modal__content slds-p-around_medium">
+                    <div class="slds-text-body_small slds-float_right slds-m-top_x-small">* = Required Information</div>
+                    <div class="section-header">Lead Information</div>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input name="FirstName" label="First Name" value={leadData.FirstName} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input name="LastName" label="Last Name" value={leadData.LastName} onchange={handleChange} required></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input name="Company" label="Company" value={leadData.Company} onchange={handleChange} required></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input name="Phone" label="Phone" value={leadData.Phone} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input name="Email" type="email" label="Email" value={leadData.Email} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-combobox
+                                name="Status"
+                                label="Status"
+                                value={leadData.Status}
+                                options={statusOptions}
+                                onchange={handleChange}>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+ 
+                 
+                    <div class="section-header">Address Information</div>
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-textarea name="Street" label="Street" value={leadData.Street} onchange={handleChange}></lightning-textarea>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input name="City" label="City" value={leadData.City} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input name="State" label="State/Province" value={leadData.State} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-3">
+                            <lightning-input name="PostalCode" label="ZIP/Postal Code" value={leadData.PostalCode} onchange={handleChange}></lightning-input>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-input name="Country" label="Country" value={leadData.Country} onchange={handleChange}></lightning-input>
+                        </div>
+                    </div>
+ 
+            
+                    <!-- Additional Information Section -->
+<div class="section-wrapper">
+    <div class="section-header">Additional Information</div>
+    <div class="slds-grid slds-wrap slds-gutters slds-p-around_medium">
+        <!-- <div class="slds-col slds-size_1-of-2">
+            <lightning-input name="Title" label="Title" value={leadData.Title} onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input name="Website" label="Website" value={leadData.Website} onchange={handleChange}></lightning-input>
+        </div> -->
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input name="ProductInterest" label="Product Interest" value={leadData.ProductInterest} onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input name="CurrentGenerators" label="Current Generator(s)" value={leadData.CurrentGenerators} onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input name="SICCode" label="SIC Code" value={leadData.SICCode} onchange={handleChange}></lightning-input>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-combobox
+                name="Primary"
+                label="Primary"
+                value={leadData.Primary}
+                options={yesNoOptions}
+                onchange={handleChange}>
+            </lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-input name="NumberOfLocations" label="No. of Locations" type="number" value={leadData.NumberOfLocations} onchange={handleChange}></lightning-input>
+        </div>
+    </div>
+</div>
+  
+                    <div class="section-header">Description Information</div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-1">
+                            <lightning-textarea name="Description" label="Description" value={leadData.Description} onchange={handleChange}></lightning-textarea>
+                        </div>
+                    </div>
+                </div>
+ 
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Cancel" onclick={closeModal}></lightning-button>
+                    <lightning-button variant="brand" label="Save" onclick={handleSave} class="slds-m-left_small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
